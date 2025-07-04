@@ -1,6 +1,22 @@
 body {
-    background-image: url('Images/IMG_3423.jpg');
+    background-image: url('IMG_3423.jpg');
+    background-color: #040404; /* Fallback color */
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size:auto;
+}
+h1 {
+    color: #ffffff;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 3em;
+    margin-top: 20px;
+}
+
+p {
+    color: #ffffff;
+    text-align: center;
+    font-family: ;
+    font-size: 1.2em;
+    margin-top: 10px;
 }
