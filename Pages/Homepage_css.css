@@ -1,6 +1,100 @@
+/* Reset and Base */
 body {
-    background-image: url('Images/IMG_3423.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #000;
+  }
+  
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #006400;
+    color: white;
+    padding: 20px;
+  }
+  
+  .title {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .user-icon {
+    font-size: 24px;
+  }
+  
+  /* About Me */
+  .about {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  /* Categories */
+  .categories {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 30px 0;
+  }
+  
+  .category-box {
+    text-align: center;
+  }
+  
+  .img-placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    margin: 10px auto;
+    border-radius: 8px;
+  }
+  
+  /* Trending */
+  .trending {
+    text-align: center;
+    font-size: 14px;
+    margin: 30px 20px;
+  }
+  
+  /* Look Book */
+  .lookbook {
+    text-align: center;
+    margin: 30px 0;
+  }
+  
+  .lookbook .img-placeholder {
+    width: 150px;
+    height: 150px;
+  }
+  
+  /* Contact Form */
+  .contact {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .contact form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact input,
+  .contact textarea {
+    width: 300px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  .contact button {
+    background-color: #006400;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  
