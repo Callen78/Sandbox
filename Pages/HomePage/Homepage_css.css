@@ -96,5 +96,36 @@ body {
     border: none;
     cursor: pointer;
   }
+
+/* Center the map container */
+.map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; /* Optional: Add some spacing around the map */
+  }
+  
+  /* Optional: Center the entire store-location section */
+  .store-location {
+    text-align: center;
+  }
+
+  /* Center the footer content */
+footer {
+    text-align: center;
+    padding: 20px; /* Optional: Add some padding for spacing */
+    background-color: #f8f8f8; /* Optional: Add a background color */
+  }
+  
+  footer .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Optional: Add spacing between social icons */
+  }
+  
+  footer .social-icons a img {
+    width: 24px; /* Optional: Adjust the size of the icons */
+    height: 24px;
+  }
   
   
