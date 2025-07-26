@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #fff;
+    background-color: rgb(231, 231, 194);
     color: #000;
   }
   
@@ -15,11 +15,18 @@ body {
     background-color: #006400;
     color: white;
     padding: 20px;
+    position: relative; /* For absolute positioning of the user icon */
+    border: 3px solid black; /* Add a black border */
+    border-radius: 5px; /* Optional: Slightly round the corners */
   }
   
-  .title {
-    margin: 0;
-    font-size: 24px;
+  .logo {
+    max-width: 200px; /* Adjust the size of the logo */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center the logo */
+    border: 3px solid black; /* Add a black border */
+    border-radius: 5px; /* Optional: Slightly round the corners */
   }
   
   .user-icon {
@@ -47,11 +54,42 @@ body {
   .img-placeholder {
     width: 100px;
     height: 100px;
-    background-color: #ccc;
+    background-size: cover;
+    background-position: center;
     margin: 10px auto;
-    border-radius: 8px;
+    border: 3px solid black; /* Add a black border */
+    border-radius: 5px; /* Optional: Slightly round the corners */
   }
-  
+
+  /* Specific styles for each category */
+.img-placeholder.upper-clothing {
+  background-image: url("../Images/Upward_Arrow_Graffiti_Style.jpg"); /* Replace with the actual path to your image */
+}
+
+.img-placeholder.lower-clothing {
+  background-image: url("../Images/Downward_Arrow_Graffiti_Style.jpg"); /* Replace with the actual path to your image */
+}
+
+.img-placeholder.add-on-clothing {
+  background-image: url("../Images/Plus_Sign_Graffiti_Style.jpg"); /* Replace with the actual path to your image */
+}
+
+/* Category box styling */
+.category-box {
+  text-align: center; /* Center the text and image */
+  margin: 20px; /* Add spacing between category boxes */
+}
+
+.category-box a {
+  text-decoration: none; /* Remove underline from links */
+  color: black; /* Set link text color */
+  font-weight: bold; /* Make the text bold */
+}
+
+.category-box a:hover {
+  color: #006400; /* Change text color on hover */
+}
+
   /* Trending */
   .Trending {
     text-align: center;
