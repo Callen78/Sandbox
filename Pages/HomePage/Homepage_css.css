@@ -48,7 +48,8 @@ body {
   }
   
   .category-box {
-    text-align: center;
+    text-align: center; /* Center the text and image */
+    margin: 20px; /* Add spacing between category boxes */
   }
   
   .img-placeholder {
@@ -74,16 +75,16 @@ body {
   background-image: url("../Images/Plus_Sign_Graffiti_Style.jpg"); /* Replace with the actual path to your image */
 }
 
-/* Category box styling */
-.category-box {
-  text-align: center; /* Center the text and image */
-  margin: 20px; /* Add spacing between category boxes */
+.img-placeholder.lookbook {
+  background-image: url("../Images/Eye_Graffiti_Style.jpg"); /* Replace with the actual path to your image */
 }
 
 .category-box a {
+  display: inline-block; /* Ensure the link and image are treated as a block */
   text-decoration: none; /* Remove underline from links */
   color: black; /* Set link text color */
   font-weight: bold; /* Make the text bold */
+  text-align: center; /* Center the text */
 }
 
 .category-box a:hover {
