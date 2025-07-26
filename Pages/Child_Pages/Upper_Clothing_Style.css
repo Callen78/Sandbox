@@ -3,12 +3,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* Light background */
+    background-color: rgb(231, 231, 194); /* Light background */
     color: #333; /* General text color */
   }
   
   header {
-    background-color: #380fed; /* Dark header background */
+    background-color: #006400; /* Dark header background */
     color: #fff; /* White text for contrast */
     padding: 20px;
     text-align: center;
@@ -77,7 +77,7 @@ body {
   
   /* Footer Styles */
   footer {
-    background-color: #333; /* Dark footer background */
+    background-color: #006400; /* Dark footer background */
     color: #fff; /* White text for contrast */
     text-align: center;
     padding: 10px 0;
