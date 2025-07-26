@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add On Pieces</title>
+  <link rel="stylesheet" href="Add_On_Pieces_Style.css"> <!-- Link to your CSS file -->
+  <style>
+    .clothing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .clothing-item {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+
+    .clothing-item img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .clothing-item h3 {
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+
+    .clothing-item p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    .clothing-item .price {
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Add On Pieces</h1>
+  </header>
+
+  <main>
+    <section class="clothing-grid">
+      <div class="clothing-item">
+        <img src="../images/IMG_3423.jpg" alt="Shirt 1"> <!-- Example image path, replace with actual image paths -->
+        <h3>Casual Shirt</h3>
+        <p>Comfortable and stylish casual shirt.</p>
+        <p class="price">$25.00</p>
+      </div>
+      <div class="clothing-item">
+        <img src="../images/shirt2.jpg" alt="Shirt 2">
+        <h3>Formal Shirt</h3>
+        <p>Perfect for office or formal events.</p>
+        <p class="price">$40.00</p>
+      </div>
+      <div class="clothing-item">
+        <img src="../images/shirt3.jpg" alt="Shirt 3">
+        <h3>Denim Jacket</h3>
+        <p>Classic denim jacket for all seasons.</p>
+        <p class="price">$60.00</p>
+      </div>
+      <!-- Add more clothing items as needed -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Carl's Closet. All rights reserved.</p>
+  </footer>
+</body>
+</html>
