@@ -26,7 +26,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #006400;
+    /* background-color: rgb(224, 224, 84); */
+    /* background-color: #006400; */
+    background-color: rgb(190, 2, 2);
     color: white;
     padding: 20px;
     position: relative; /* For absolute positioning of the user icon */
@@ -188,12 +190,13 @@ footer {
     left: 0;
     width: 180px;
     height: 100%;
-    background-color: #006400; /* Urban green */
+    /*background-color: #5c5c5c; */
+    background-color: rgb(190, 2, 2);
     color: white;
     font-family: 'Impact', sans-serif;
     padding-top: 80px;
     z-index: 1000;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 0 10px #000000;
     border: 3px solid black; /* Add a black border */
     border-radius: 5px; /* Optional: Slightly round the corners */
   }
