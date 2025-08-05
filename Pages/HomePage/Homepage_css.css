@@ -3,17 +3,17 @@
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    /* background-color: rgb(231, 231, 194); fallback */
-    background-image: url("../Images/graffiti_background_assorted.png");
+   /* background-color: rgb(231, 231, 194);*/
+    background-image: url("../Images/real_brick_wall.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
     background-attachment: fixed;
-    color: #000;
+    color:black;
   }
 
   section {
-  background-color: rgba(255, 255, 155, 0.20); /* soft white */
+ /* background-color: rgba(255, 255, 155, 0.20); soft white */
   border-radius: 10px;
   padding: 20px;
   margin: 20px;

@@ -1,0 +1,144 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+    color: #111;
+    background: rgb(250, 250, 250);
+  }
+  
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: rgb(229, 229, 56);
+    border-bottom: 1px solid #ccc;
+    border: 3px solid black; /* Add a black border */
+    border-radius: 5px; /* Optional: Slightly round the corners */ 
+  }
+  .logo {
+   /* font-size: 1.5rem;*/
+    font-weight: bold;
+    width: 120px; /* or any desired size */
+    height: auto;
+    border: 3px solid black; /* Add a black border */
+    border-radius: 5px; /* Optional: Slightly round the corners */ 
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+  }
+  nav ul li a {
+    text-decoration: none;
+    color: #034803;
+    font-weight: 500;
+  }
+  .cart-icon {
+    font-size: 1.3rem;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: url('../Images/Me.png') no-repeat center center/cover;
+    height: 80vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  .cta-button {
+    background-color: black;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+  
+  /* Products */
+  .products {
+    padding: 60px 5%;
+    text-align: center;
+  }
+  .products h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  .product-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .product-card {
+    width: 250px;
+    text-align: left;
+  }
+  .product-card img {
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  .product-card h3 {
+    margin: 10px 0 5px;
+  }
+  .product-card p {
+    color: #777;
+  }
+
+  /* Center the map container */
+.map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; /* Optional: Add some spacing around the map */
+  }
+
+   /* Optional: Center the entire store-location section */
+   .store-location {
+    text-align: center;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #f8f8f8;
+    padding: 40px 5%;
+    border-top: 1px solid #ccc;
+  }
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .newsletter input {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  .newsletter button {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  .social-icons a {
+    margin: 0 10px;
+    font-size: 1.2rem;
+  }
+  
