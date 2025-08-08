@@ -16,9 +16,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 5%;
-    background-color: rgb(229, 229, 56);
+    background-color: black;
     border-bottom: 1px solid #ccc;
-    border: 3px solid black; /* Add a black border */
+    border: 3px solid white; /* Add a black border */
     border-radius: 5px; /* Optional: Slightly round the corners */ 
   }
   .logo {
@@ -26,7 +26,7 @@
     font-weight: bold;
     width: 120px; /* or any desired size */
     height: auto;
-    border: 3px solid black; /* Add a black border */
+    border: 3px solid white; /* Add a black border */
     border-radius: 5px; /* Optional: Slightly round the corners */ 
   }
   nav ul {
@@ -36,7 +36,7 @@
   }
   nav ul li a {
     text-decoration: none;
-    color: #034803;
+    color: #098209;
     font-weight: 500;
   }
   .cart-icon {
@@ -53,6 +53,8 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    border: 3px solid white; /* Add a black border */
+    border-radius: 5px; /* Optional: Slightly round the corners */ 
   }
   .hero h1 {
     font-size: 3rem;
@@ -70,11 +72,15 @@
     font-weight: bold;
     border-radius: 4px;
   }
-  
+
   /* Products */
   .products {
     padding: 60px 5%;
     text-align: center;
+    background-color: black;
+    color: white;
+    border: 3px solid white; /* Add a black border */
+    border-radius: 5px; /* Optional: Slightly round the corners */ 
   }
   .products h2 {
     font-size: 2rem;
@@ -89,8 +95,6 @@
   .product-card {
     width: 250px;
     text-align: left;
-    border: 3px solid black; /* Add a black border */
-    border-radius: 5px; /* Optional: Slightly round the corners */ 
   }
   .product-card img {
     width: 100%;
@@ -124,9 +128,12 @@
   
   /* Footer */
   footer {
-    background-color: #f8f8f8;
+    background-color: #006400;
     padding: 40px 5%;
     border-top: 1px solid #ccc;
+    color: white;
+    border: 3px solid white; /* Add a black border */
+    border-radius: 5px; /* Optional: Slightly round the corners */ 
   }
   .footer-content {
     display: flex;
