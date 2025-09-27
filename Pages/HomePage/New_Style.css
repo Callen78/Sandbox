@@ -99,7 +99,7 @@
   }
   .product-card img {
     width: 100%;
-    border: 1px solid #ddd;
+    border: 5px solid #ddd;
   }
   .product-card h3 {
     margin: 10px 0 5px;
