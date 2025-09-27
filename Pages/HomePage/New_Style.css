@@ -7,7 +7,9 @@
   body {
     font-family: 'Helvetica Neue', sans-serif;
     color: #111;
-    background: rgb(250, 250, 250);
+    background: rgb(10, 10, 10);
+     border: 3px solid white; /* Add a black border */
+    border-radius: 5px; /* Optional: Slightly round the corners */ 
   }
   
   /* Header */
