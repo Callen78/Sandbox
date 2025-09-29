@@ -11,6 +11,19 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Simple CORS middleware for local development (adjust or remove in production)
+app.use((req, res, next) => {
+  const allowedOrigins = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://127.0.0.1:5500', 'http://localhost:5500'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
 // Serve static files from Pages folder so your HTML is reachable
 app.use(express.static(path.join(__dirname, '..')));
 
@@ -64,6 +77,7 @@ const transporter = createTransporter();
 
 // Endpoint to accept subscriptions
 app.post('/subscribe', async (req, res) => {
+  console.log('[/subscribe] incoming request', { ip: req.ip, headers: req.headers && req.headers['content-type'] });
   const { email } = req.body;
   if (!email || typeof email !== 'string' || !email.includes('@')) {
     return res.status(400).json({ error: 'Invalid email' });
@@ -104,6 +118,7 @@ app.post('/subscribe', async (req, res) => {
 
 // Keep the old send-email endpoint (contact form) if needed
 app.post('/send-email', async (req, res) => {
+  console.log('[/send-email] incoming request', { ip: req.ip, headers: req.headers && req.headers['content-type'] });
   const { name, email, message } = req.body;
   try {
     await transporter.sendMail({

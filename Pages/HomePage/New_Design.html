@@ -100,20 +100,32 @@
           if (!email) { status.textContent = 'Please enter a valid email.'; return; }
 
           try {
-            const resp = await fetch('/subscribe', {
+            // Use explicit URL for the Node server (fixes Live Server / different-origin 405)
+            const API = 'http://localhost:3000';
+            const resp = await fetch(`${API}/subscribe`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ email })
             });
-            const data = await resp.json();
+
+            // Safely parse response (server might return empty body on error)
+            let data = null;
+            const contentType = resp.headers.get('content-type') || '';
+            if (contentType.includes('application/json')) {
+              try { data = await resp.json(); } catch (e) { data = null; }
+            } else {
+              // fallback to text
+              try { data = { message: await resp.text() }; } catch (e) { data = null; }
+            }
+
             if (resp.ok) {
-              status.textContent = data.message || 'Thanks for subscribing!';
+              status.textContent = (data && (data.message || data.error)) || 'Thanks for subscribing!';
               emailInput.value = '';
             } else {
-              status.textContent = data.error || 'Subscription failed.';
+              status.textContent = (data && (data.error || data.message)) || `Subscription failed (status ${resp.status}).`;
             }
           } catch (err) {
-            console.error(err);
+            console.error('Fetch error:', err);
             status.textContent = 'Network error. Try again later.';
           }
         });
