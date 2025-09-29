@@ -1,41 +1,117 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware to parse form data
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Serve static files (e.g., your HTML form)
-app.use(express.static('public'));
+// Serve static files from Pages folder so your HTML is reachable
+app.use(express.static(path.join(__dirname, '..')));
 
-// Route to handle form submission
+const SUBSCRIBERS_FILE = path.join(__dirname, 'subscribers.json');
+
+function readSubscribers() {
+  try {
+    if (!fs.existsSync(SUBSCRIBERS_FILE)) return [];
+    const raw = fs.readFileSync(SUBSCRIBERS_FILE, 'utf8');
+    return JSON.parse(raw || '[]');
+  } catch (err) {
+    console.error('Failed to read subscribers file', err);
+    return [];
+  }
+}
+
+function writeSubscribers(list) {
+  try {
+    fs.writeFileSync(SUBSCRIBERS_FILE, JSON.stringify(list, null, 2), 'utf8');
+  } catch (err) {
+    console.error('Failed to write subscribers file', err);
+  }
+}
+
+// Create transporter using environment variables for security
+function createTransporter() {
+  if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+    return nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 587,
+      secure: process.env.SMTP_SECURE === 'true',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+  }
+
+  // Fallback: use ethereal for testing or console log (no credentials)
+  console.warn('SMTP credentials not set. Emails will be logged to console only.');
+  return {
+    sendMail: async (opts) => {
+      console.log('--- mock sendMail ---');
+      console.log(opts);
+      return Promise.resolve({ accepted: [process.env.ADMIN_EMAIL || 'admin@example.com'] });
+    },
+  };
+}
+
+const transporter = createTransporter();
+
+// Endpoint to accept subscriptions
+app.post('/subscribe', async (req, res) => {
+  const { email } = req.body;
+  if (!email || typeof email !== 'string' || !email.includes('@')) {
+    return res.status(400).json({ error: 'Invalid email' });
+  }
+
+  const subscribers = readSubscribers();
+  if (subscribers.includes(email)) {
+    return res.status(200).json({ message: 'Already subscribed' });
+  }
+
+  subscribers.push(email);
+  writeSubscribers(subscribers);
+
+  // Send a confirmation email to subscriber and notify admin
+  try {
+    // confirmation to subscriber
+    await transporter.sendMail({
+      from: process.env.FROM_EMAIL || process.env.SMTP_USER || 'no-reply@example.com',
+      to: email,
+      subject: 'Thanks for subscribing to Carl\'s Closet',
+      text: `Thanks for subscribing to Carl's Closet updates. We'll keep you posted!`,
+    });
+
+    // notification to admin
+    await transporter.sendMail({
+      from: process.env.FROM_EMAIL || process.env.SMTP_USER || 'no-reply@example.com',
+      to: process.env.ADMIN_EMAIL || 'carlallenjr87@gmail.com',
+      subject: 'New newsletter subscriber',
+      text: `New subscriber: ${email}`,
+    });
+  } catch (err) {
+    console.error('Error sending notification emails:', err);
+    // don't fail subscription if email sending fails
+  }
+
+  return res.status(200).json({ message: 'Subscribed' });
+});
+
+// Keep the old send-email endpoint (contact form) if needed
 app.post('/send-email', async (req, res) => {
   const { name, email, message } = req.body;
-
-  // Set up Nodemailer transporter
-  const transporter = nodemailer.createTransport({
-    service: 'gmail', // Use your email provider (e.g., Gmail, Outlook)
-    auth: {
-      user: 'your-email@gmail.com', // Replace with your email
-      pass: 'your-email-password', // Replace with your email password or app password
-    },
-  });
-
-  // Email options
-  const mailOptions = {
-    from: email, // Sender's email
-    to: 'your-email@gmail.com', // Your email to receive the message
-    subject: `New Contact Form Submission from ${name}`,
-    text: `You have a new message from ${name} (${email}):\n\n${message}`,
-  };
-
   try {
-    // Send the email
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail({
+      from: email,
+      to: process.env.ADMIN_EMAIL || 'carlallenjr87@gmail.com',
+      subject: `New Contact Form Submission from ${name || 'visitor'}`,
+      text: `You have a new message from ${name || 'visitor'} (${email || 'no-email'}):\n\n${message || ''}`,
+    });
     res.status(200).send('Email sent successfully!');
   } catch (error) {
     console.error('Error sending email:', error);

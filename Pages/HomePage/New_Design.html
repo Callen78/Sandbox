@@ -21,7 +21,7 @@
   </header>
 
   <section class="hero">
-    
+
     <h1>Streetwear With Purpose</h1>
     <p>The goal of this site is to give ideals for outfits for any occasion, whether it be in the office, everyday day errands, etc. Fahsion ranges from urban style to a 
       comfortable and casual look. The goal is to provide a wide range of styles that can be worn in any setting, from the work place to time off. The Founder of this space is from Memphis, TN and 
@@ -73,10 +73,11 @@
   <footer>
     <div class="footer-content">
       <p>© 2025 Carl's Closet. All rights reserved.</p>
-      <form class="newsletter">
-        <label>Subscribe for updates:</label>
-        <input type="email" placeholder="Your email" />
+      <form id="newsletter-form" class="newsletter">
+        <label for="newsletter-email">Subscribe for updates:</label>
+        <input type="email" id="newsletter-email" name="email" placeholder="Your email" required />
         <button type="submit">Join</button>
+        <span id="newsletter-status" aria-live="polite" style="margin-left:10px"></span>
       </form>
       <div class="social-icons">
         <a href="#">📷</a>
@@ -85,5 +86,38 @@
       </div>
     </div>
   </footer>
+    <script>
+      // Newsletter form: POSTs JSON { email } to /subscribe
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('newsletter-form');
+        const emailInput = document.getElementById('newsletter-email');
+        const status = document.getElementById('newsletter-status');
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          status.textContent = 'Submitting...';
+          const email = emailInput.value.trim();
+          if (!email) { status.textContent = 'Please enter a valid email.'; return; }
+
+          try {
+            const resp = await fetch('/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email })
+            });
+            const data = await resp.json();
+            if (resp.ok) {
+              status.textContent = data.message || 'Thanks for subscribing!';
+              emailInput.value = '';
+            } else {
+              status.textContent = data.error || 'Subscription failed.';
+            }
+          } catch (err) {
+            console.error(err);
+            status.textContent = 'Network error. Try again later.';
+          }
+        });
+      });
+    </script>
 </body>
 </html>
