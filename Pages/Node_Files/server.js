@@ -137,4 +137,13 @@ app.post('/send-email', async (req, res) => {
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+  console.log('Server debug:', { port: PORT, cwd: process.cwd(), dir: __dirname });
+});
+
+// Better global error visibility for debugging connection issues
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught exception:', err && err.stack ? err.stack : err);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled rejection:', reason);
 });
