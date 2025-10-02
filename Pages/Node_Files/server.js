@@ -1,3 +1,5 @@
+// Load local environment variables from .env (optional, for development)
+try { require('dotenv').config(); } catch (e) { /* dotenv optional */ }
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
