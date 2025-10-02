@@ -22,6 +22,11 @@
     border-bottom: 1px solid #ccc;
     border: 3px solid white; /* Add a black border */
     border-radius: 5px; /* Optional: Slightly round the corners */ 
+    /* make header stick to the top when scrolling */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: box-shadow 200ms ease, background-color 200ms ease;
   }
 
   .logo {
@@ -45,6 +50,11 @@
   .cart-icon {
     font-size: 1.3rem;
   }
+
+/* subtle shadow when header is in sticky state */
+header.sticky {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
   
   /* Hero Section */
   .hero {

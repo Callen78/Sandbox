@@ -87,6 +87,24 @@
     </div>
   </footer>
     <script>
+      // Toggle sticky class to add a subtle shadow when header sticks
+      document.addEventListener('DOMContentLoaded', () => {
+        const header = document.querySelector('header');
+        if (!header) return;
+        const observer = new IntersectionObserver(
+          ([e]) => header.classList.toggle('sticky', e.intersectionRatio < 1),
+          { threshold: [1] }
+        );
+        // observe a sentinel element at the top of the page
+        const sentinel = document.createElement('div');
+        sentinel.style.position = 'absolute';
+        sentinel.style.top = '0';
+        sentinel.style.width = '1px';
+        sentinel.style.height = '1px';
+        document.body.prepend(sentinel);
+        observer.observe(sentinel);
+      });
+
       // Newsletter form: POSTs JSON { email } to /subscribe
       document.addEventListener('DOMContentLoaded', () => {
         const form = document.getElementById('newsletter-form');
