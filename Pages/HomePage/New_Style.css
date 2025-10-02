@@ -138,6 +138,7 @@ header.sticky {
    /*Optional: Center the entire store-location section*/
    .store-location {
     text-align: center;
+    color: rgb(253, 253, 253);
   }
 
 
