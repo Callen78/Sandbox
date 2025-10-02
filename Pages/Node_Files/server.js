@@ -114,8 +114,8 @@ app.post('/subscribe', async (req, res) => {
       const infoSub = await transporter.sendMail({
         from: process.env.FROM_EMAIL || process.env.SMTP_USER || 'no-reply@example.com',
         to: email,
-        subject: 'Thanks for subscribing to Carl\'s Closet',
-        text: `Thanks for subscribing to Carl's Closet updates. We'll keep you posted!`,
+        subject: 'Wife of mine thank you',
+        text: `Its works thanks for subscribing. Love ya!`,
       });
       console.log('Confirmation email send result:', infoSub);
     } catch (err) {
