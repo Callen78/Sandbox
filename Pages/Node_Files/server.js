@@ -75,6 +75,20 @@ function createTransporter() {
 
 const transporter = createTransporter();
 
+// Log transporter state and verify SMTP connection when possible
+(async function verifyTransport() {
+  try {
+    if (transporter && typeof transporter.verify === 'function') {
+      await transporter.verify();
+      console.log('SMTP transporter verified: ready to send emails');
+    } else {
+      console.log('Using mock transporter (emails will be logged to console)');
+    }
+  } catch (err) {
+    console.error('SMTP transporter verification failed:', err && err.message ? err.message : err);
+  }
+})();
+
 // Endpoint to accept subscriptions
 app.post('/subscribe', async (req, res) => {
   console.log('[/subscribe] incoming request', { ip: req.ip, headers: req.headers && req.headers['content-type'] });
@@ -94,20 +108,30 @@ app.post('/subscribe', async (req, res) => {
   // Send a confirmation email to subscriber and notify admin
   try {
     // confirmation to subscriber
-    await transporter.sendMail({
-      from: process.env.FROM_EMAIL || process.env.SMTP_USER || 'no-reply@example.com',
-      to: email,
-      subject: 'Thanks for subscribing to Carl\'s Closet',
-      text: `Thanks for subscribing to Carl's Closet updates. We'll keep you posted!`,
-    });
+    try {
+      const infoSub = await transporter.sendMail({
+        from: process.env.FROM_EMAIL || process.env.SMTP_USER || 'no-reply@example.com',
+        to: email,
+        subject: 'Thanks for subscribing to Carl\'s Closet',
+        text: `Thanks for subscribing to Carl's Closet updates. We'll keep you posted!`,
+      });
+      console.log('Confirmation email send result:', infoSub);
+    } catch (err) {
+      console.error('Failed to send confirmation email to subscriber:', err && err.message ? err.message : err);
+    }
 
     // notification to admin
-    await transporter.sendMail({
-      from: process.env.FROM_EMAIL || process.env.SMTP_USER || 'no-reply@example.com',
-      to: process.env.ADMIN_EMAIL || 'carlallenjr87@gmail.com',
-      subject: 'New newsletter subscriber',
-      text: `New subscriber: ${email}`,
-    });
+    try {
+      const infoAdmin = await transporter.sendMail({
+        from: process.env.FROM_EMAIL || process.env.SMTP_USER || 'no-reply@example.com',
+        to: process.env.ADMIN_EMAIL || 'carlallenjr87@gmail.com',
+        subject: 'New newsletter subscriber',
+        text: `New subscriber: ${email}`,
+      });
+      console.log('Admin notification send result:', infoAdmin);
+    } catch (err) {
+      console.error('Failed to send admin notification email:', err && err.message ? err.message : err);
+    }
   } catch (err) {
     console.error('Error sending notification emails:', err);
     // don't fail subscription if email sending fails
