@@ -18,7 +18,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 5%;
-    background-color: black;
+    background-color: rgb(55, 69, 7);
     border-bottom: 1px solid #ccc;
     border: 3px solid white; /* Add a black border */
     border-radius: 5px; /* Optional: Slightly round the corners */ 
@@ -171,7 +171,7 @@ body.pullup-open {
   
   /* Footer */
   footer {
-    background-color: #006400;
+    background-color: rgb(55, 69, 7);
     padding: 40px 5%;
     border-top: 1px solid #ccc;
     color: white;
